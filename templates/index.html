@@ -1,28 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Hello Learners</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #eef2ff, #dbeafe);
+<meta charset="UTF-8">
+<title>Padhai Krlo Animation</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: black;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+    }
+
+    h1 {
+        font-size: 60px;
+        color: #00e6e6;
+        text-shadow: 0 0 20px #00e6e6, 0 0 40px #00b3b3;
+        animation: glow 2s infinite alternate, float 3s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+        from {
+            text-shadow: 0 0 10px #00e6e6, 0 0 20px #00e6e6;
         }
-        .box {
-            padding: 40px 60px;
-            border-radius: 20px;
-            background: white;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            font-size: 42px;
-            font-weight: bold;
+        to {
+            text-shadow: 0 0 30px #00b3b3, 0 0 60px #00b3b3;
         }
-    </style>
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0px); }
+    }
+
+    .book {
+        position: absolute;
+        font-size: 24px;
+        animation: rise 5s linear infinite;
+    }
+
+    @keyframes rise {
+        0% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-800px);
+            opacity: 0;
+        }
+    }
+</style>
 </head>
 <body>
-    <div class="box">Hello Learners</div>
+
+<h1>📚 Padhai Krlo 😄</h1>
+
+<script>
+function createBook() {
+    const book = document.createElement("div");
+    book.classList.add("book");
+
+    // Different study emojis
+    const emojis = ["📚", "📖", "✏️", "📝", "📘"];
+    book.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+
+    book.style.left = Math.random() * window.innerWidth + "px";
+    book.style.animationDuration = (3 + Math.random() * 2) + "s";
+
+    document.body.appendChild(book);
+
+    setTimeout(() => {
+        book.remove();
+    }, 5000);
+}
+
+setInterval(createBook, 300);
+</script>
+
 </body>
 </html>
